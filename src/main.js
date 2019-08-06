@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import Header from 'components/Header/Header.vue'
 
+import './api'
+
+Vue.config.productionTip = true // 禁止在 Vue 启动时的生产提示
 
 // 注册全局组件
 Vue.component('Header', Header)
