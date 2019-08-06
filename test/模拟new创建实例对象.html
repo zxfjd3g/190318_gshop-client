@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟new创建实例对象</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+
+
+
+      // 1. 如果构造函数返回一个对象, new函数得到是返回的对象
+      return {m: 1}
+      // return []
+      // return function () { }
+      // 2. 如果函数函数返回的是其它任意基本类型, new函数得到的就是内部新创建的对象
+      // return 3
+    }
+    const p = new Person('Tom',12)
+    console.log(p)
+  </script>
+
+  <script>
+    /* 定义一个工具函数能实现new关键字的功能 */
+    function newInstance(fn, ...args) {
+      // 创建一个空的object对象
+      const instance = {}
+      // 给实例对象添加__proto__属性, 属性值是构造函数的prototype属性值
+      instance.__proto__ = fn.prototype
+      // 通过instance来执行fn
+      const result = fn.apply(instance, args)
+      // 1. 如果构造函数返回一个对象, new函数得到是返回的对象
+      // 2. 如果函数函数返回的是其它任意基本类型, new函数得到的就是内部新创建的对象
+      return result instanceof Object ? result : instance
+    }
+    const p2 = newInstance(Person, 'Jack', 13)
+    console.log(p2)
+
+  </script>
+</body>
+
+</html>
