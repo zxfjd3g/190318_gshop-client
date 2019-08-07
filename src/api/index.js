@@ -32,7 +32,3 @@ export const reqShops = ({ latitude, longitude }) => ajax({
 })
 
 export const reqBaiDuXxx = () => ajax(BASE2 + '/xxx')
-
-reqAddress('116.36867', '40.10038').then((result) => {
-  console.log('result', result)
-})
