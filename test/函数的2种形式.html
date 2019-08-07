@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>函数的2种形式</title>
+</head>
+<body>
+  <!-- 
+    1. 函数声明
+        理解: 函数的定义作为一条完整的语句
+        特点: 有提升, 在函数声明语句前就可以执行(当然也可以后面再执行)
+    
+    2. 函数表达式
+        理解: 函数的定义作为一个表达式, 本身不是一条完整的语句, 
+              不能单独存在, 只能与其它语法配合成为一条完整语句
+        特点: 没有提升,  只能在定义后执行(当然也包括立即执行)
+              函数名是可选的, 且是只读且只能在函数内部使用的函数的引用
+        函数表达式的多种使用方式
+            1). 赋值/保存给一个变量
+            2). 作为另一个函数的实参
+            3). 作为另一个函数的返回值
+            4). 立即执行
+   -->
+  <script>
+
+    fn1()
+    function fn1() {
+      console.log('fn1()')
+    }
+
+    fn1()
+  </script>
+
+  <script>
+    // 1). 赋值/保存给一个变量
+    var fn2 = function () {
+      
+    }
+
+    // 2). 作为另一个函数的实参
+    setTimeout(function () {
+      console.log('延迟执行的函数表达式')
+    }, 1000);
+
+    // 3). 作为另一个函数的返回值
+    function fn3(a) {
+      return function (b) {
+        return  a + b
+      }
+    }
+    console.log(fn3(2)(4))
+
+    // 4). 立即执行  IIFE
+    ;(function () {
+      console.log('立即执行的函数表达式')
+    })()
+
+    const f2 = function f1() {
+      console.log('1111', f1===f2)
+      f1 = 2
+      console.log('333333', f1)
+    }
+    f2()
+    // console.log('2222', f1)
+
+
+    setTimeout(function f() {
+      console.log('11111111')
+      setTimeout(f, 1000);
+    }, 1000);
+    
+  </script>
+</body>
+</html>

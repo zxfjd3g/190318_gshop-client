@@ -37,26 +37,12 @@
   import {mapState} from 'vuex'
   import Shops from 'components/Shops/Shops.vue'
 
-    /* 
-    创建Swiper对象轮播有问题?
-    1. watch + nextTick()
-    2. callback + nextTick()
-    3. 利用dipatch()返回的promise
-    */
+  
   export default {
 
-    async mounted() {
+    mounted() {
       this.$store.dispatch('getShops')
-      // 返回的promise在状态更新且界面更新之后才成功
-      await this.$store.dispatch('getCategorys')
-      new Swiper('.swiper-container', {
-        loop: true, // 循环模式
-        // 如果需要分页器
-        pagination: {
-          el: '.swiper-pagination',
-        },
-      })
-
+      this.$store.dispatch('getCategorys')
       //setTimeout(() => {
         /* 
         创建swiper对象的时机?   必须在列表页面显示之后
@@ -101,6 +87,31 @@
         })
 
         return bigArr
+      }
+    },
+
+
+    /* 
+    1. watch + nextTick()
+    */
+    watch: {
+
+      // 更新状态数据 ==> 调用监视的回调 ==> 异步更新界面
+      categorys () {// categorys发生改变了/ 数组数据来了
+
+        // 将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它
+        this.$nextTick(() => {
+           /* 
+          创建swiper对象的时机?   必须在列表页面显示之后
+          */
+          new Swiper('.swiper-container', {
+            loop: true, // 循环模式
+            // 如果需要分页器
+            pagination: {
+              el: '.swiper-pagination',
+            },
+          })
+        })
       }
     },
 

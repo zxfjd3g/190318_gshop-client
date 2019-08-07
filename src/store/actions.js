@@ -31,13 +31,16 @@ export default {
   /* 
   获取商品分类列表的异步action
   */
-  async getCategorys ({commit}) {
+  async getCategorys ({commit}, callback) {
     // 1. 调用接口请求函数发请求
     const result = await reqCategorys()
     // 2. 有了结果, 提交mutation
     if (result.code===0) {
       const categorys = result.data
       commit(RECEIVE_CATEGORYS, categorys)
+
+      // 在commit之后执行callback
+      typeof callback==='function' && callback()
     }
   },
 
