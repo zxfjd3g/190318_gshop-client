@@ -13,7 +13,7 @@
     <nav class="msite_nav">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(categorys, index) in categorysArr" :key="index">
+          <div class="swiper-slide" v-for="(categorys, index) in categorysArr2" :key="index">
             <a href="javascript:" class="link_to_food" v-for="(c, index) in categorys" :key="index">
               <div class="food_container">
                 <img :src="'https://fuss10.elemecdn.com' + c.image_url">
@@ -32,6 +32,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  // import _ from 'lodash'
+  import chunk from 'lodash/chunk'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.css'
   import {mapState} from 'vuex'
@@ -101,7 +103,13 @@
         })
 
         return bigArr
+      },
+
+      categorysArr2 () {
+        // return _.chunk(this.categorys, 8)
+        return chunk(this.categorys, 8)
       }
+
     },
 
     components: {
