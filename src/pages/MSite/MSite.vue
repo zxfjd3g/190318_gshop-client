@@ -126,6 +126,11 @@
   import {mapState} from 'vuex'
   import Shops from 'components/Shops/Shops.vue'
   export default {
+
+    mounted() {
+      this.$store.dispatch('getShops')
+    },
+
     computed: {
       ...mapState(['address'])
     },
@@ -177,4 +182,5 @@
         .swiper-pagination
           >span.swiper-pagination-bullet-active
             background #02a774
+            
 </style>

@@ -4,6 +4,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import Header from 'components/Header/Header.vue'
+import Star from 'components/Star/Star.vue'
 
 import './api'
 
@@ -11,6 +12,7 @@ Vue.config.productionTip = false // 去掉提示输出
 
 // 注册全局组件
 Vue.component('Header', Header)
+Vue.component('Star', Star)
 
 /* new Vue({
   el: '#app',
