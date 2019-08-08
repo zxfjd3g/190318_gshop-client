@@ -8,4 +8,5 @@ export default {
   categorys: [], // 分类数组
   shops: [], //商家数组
   user: {}, // 当前登陆用户
+  token: localStorage.getItem('token_key'), // 当前登陆用户对应的token
 }

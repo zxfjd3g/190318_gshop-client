@@ -482,10 +482,10 @@
         "msg": "手机号或验证码不正确"
       }
       
-### 9、根据会话获取用户信息
+### 9、自动登陆
 
 #### 请求URL：
-	http://localhost:4000/userinfo
+	http://localhost:4000/auto_login
 
 #### 请求方式：
 	GET

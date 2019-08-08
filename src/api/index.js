@@ -18,7 +18,11 @@ export const reqAddress = (longitude, latitude) => ajax({
 /* 
 2. 获取食品分类列表
 */
-export const reqCategorys = () => ajax.get(BASE + '/index_category')
+export const reqCategorys = () => ajax.get(BASE + '/index_category', {
+  headers: {
+    needToken: true
+  }
+})
 
 /* 
 3. 根据经纬度获取商铺列表
@@ -28,6 +32,9 @@ export const reqShops = ({ latitude, longitude }) => ajax({
   params: {
     latitude,
     longitude
+  },
+  headers: {
+    needToken: true
   }
 })
 
@@ -59,6 +66,16 @@ export const reqPwdLogin = ({
 export const reqSmsLogin = (phone, code) => ajax.post(BASE + '/login_sms', {
   phone,
   code
+})
+
+/* 
+7. 自动登陆
+*/
+export const reqAutoLogin = () => ajax({
+  url: BASE + '/auto_login',
+  headers: {
+    needToken: true
+  }
 })
 
 export const reqBaiDuXxx = () => ajax(BASE2 + '/xxx')
