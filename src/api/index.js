@@ -40,4 +40,25 @@ export const reqSendCode = (phone) => ajax.get(BASE + '/sendcode', {
   }
 })
 
+/* 
+5. 用户名密码登陆
+*/
+export const reqPwdLogin = ({
+  name,
+  pwd,
+  captcha
+}) => ajax.post(BASE + '/login_pwd', {
+  name,
+  pwd,
+  captcha
+})
+
+/* 
+6. 手机号短信验证码登陆
+*/
+export const reqSmsLogin = (phone, code) => ajax.post(BASE + '/login_sms', {
+  phone,
+  code
+})
+
 export const reqBaiDuXxx = () => ajax(BASE2 + '/xxx')
