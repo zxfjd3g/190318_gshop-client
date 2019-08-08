@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import './validate' 
 import store from './store'
 import router from './router'
 import Header from 'components/Header/Header.vue'
