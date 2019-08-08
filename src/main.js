@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import App from './App.vue'
+import {Button} from 'mint-ui'
 
+import App from './App.vue'
 import store from './store'
 import router from './router'
 import Header from 'components/Header/Header.vue'
@@ -13,6 +14,7 @@ Vue.config.productionTip = false // 去掉提示输出
 // 注册全局组件
 Vue.component('Header', Header)
 Vue.component('Star', Star)
+Vue.component(Button.name, Button)  // mt-button
 
 /* new Vue({
   el: '#app',
