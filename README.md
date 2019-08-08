@@ -84,8 +84,8 @@
         使用lodash库的工具函数: chunk()
     使用Swiper显示轮播, 如何在界面更新之后创建Swiper对象?
         1). 使用watch+$nextTick( () =>{界面更新之后立即执行})
-        2). 使用回调+$nextTick()
-        3). 利用dispatch()返回的promise	
+        2). 使用自定义回调+$nextTick()
+        3). 利用dispatch()返回的promise
     使用svg图片实现loading的效果
     
 ## 3. Star组件

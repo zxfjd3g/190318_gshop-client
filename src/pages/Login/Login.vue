@@ -13,7 +13,7 @@
           <div :class="{on: loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" 
-                name="phone" v-model="phone" v-validate="'required|mobile'">
+                v-model="phone" name="phone" v-validate="'required|mobile'">
               <button :disabled="!isRightPhone || computeTime>0" class="get_verification" 
               :class="{right_phone_number: isRightPhone}" @click.prevent="sendCode">
                 {{computeTime>0 ? `短信已发送(${computeTime}s)` : '获取验证码'}}
