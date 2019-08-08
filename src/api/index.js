@@ -31,4 +31,13 @@ export const reqShops = ({ latitude, longitude }) => ajax({
   }
 })
 
+/* 
+4. 发送短信验证码
+*/
+export const reqSendCode = (phone) => ajax.get(BASE + '/sendcode', {
+  params: {
+    phone
+  }
+})
+
 export const reqBaiDuXxx = () => ajax(BASE2 + '/xxx')

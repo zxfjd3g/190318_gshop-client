@@ -42,7 +42,8 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码">
-                <img class="get_verification" src="./images/captcha.svg" alt="captcha">
+                <img class="get_verification" src="http://localhost:4000/captcha" alt="captcha"
+                  @click="updateCaptcha" ref="captcha">
               </section>
             </section>
           </div>
@@ -58,10 +59,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import { Toast, MessageBox } from 'mint-ui'
+  import {reqSendCode} from '../../api'
+
   export default {
     data () {
       return {
-        loginWay: true, // true: 短信登陆, false: 密码登陆
+        loginWay: false, // true: 短信登陆, false: 密码登陆
         phone: '', // 手机号
         computeTime: 0, // 计时剩余的时间
         isShowPwd: false, // 是否显示密码
@@ -78,18 +82,40 @@
     },
 
     methods: {
-      sendCode () {
+      async sendCode () {
         // alert('-----')
         // 将computeTime设置为计时的最大值
         this.computeTime = 10
         // 启动循环定时器, 每隔1s将computeTime减1
         const intervalId = setInterval(() => {
-          this.computeTime--
           // 到达0时, 自动停止计时
           if (this.computeTime===0) {
             clearInterval(intervalId)
+          } else {
+            this.computeTime--
           }
-        }, 1000);
+          
+        }, 1000)
+
+        // 发ajax请求 ==> 发送验证码短信
+        const result = await reqSendCode(this.phone)
+        if (result.code===0) {
+          // alert('短信已发送')
+          Toast('短信已发送')
+        } else {
+          // 停止计时
+          this.computeTime = 0
+          // alert(result.msg)
+          MessageBox.alert(result.msg)
+        }
+      },
+
+      /* 
+      更新显示图形验证码
+      */
+      updateCaptcha () {
+        // 指定的src值需要携带一个时间戳参数
+        this.$refs.captcha.src = 'http://localhost:4000/captcha?time=' + Date.now()
       }
     }
   }
