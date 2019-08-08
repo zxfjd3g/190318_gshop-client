@@ -120,7 +120,8 @@
             0: 成功, 保存user到state, 保存token到storage, 返回到个人中心
     5). 自动登陆
         在初始时, 如果有token, 但没有user信息, 就发请求获取user实现自动登陆
-    
+    6). 退出登陆
+        清除state中的user和token, 以及local中的token
 
 ## 2. token的理解和使用
     1). 作用
