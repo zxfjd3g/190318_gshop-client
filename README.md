@@ -243,3 +243,8 @@
           transition
         xxx-enter / xxx-leave-to
           隐藏时的样式
+
+### 5. Goods组件的基本滑动
+    下载并引入better-scroll
+    new BScroll(wrapDiv, {})
+    better-scroll禁用了原生的dom事件, 使用的是自定义事件, 而且默认不分发
