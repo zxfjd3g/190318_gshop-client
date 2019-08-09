@@ -16,23 +16,29 @@
     3). 区别于数组
         不是数组类型, 是对象类型
         没有数组的一系列方法
-    4). 如何让类数组能调用数组的方法
+    4). 如何让类数组能调用数组的部分方法
         call() / apply()
     5). 如何根据类数组生成真数组
         slice / splice / from / concat
     6). 原生内置的类数组
         函数的实参列表: arguments
         DOM中得到多个节点的方法或属性: getElementsByTagName()/children
+        document.querySelectAll('li')
+        document.getElementsByTagName('li')
   -->
 
   <script>
+    // 'use strict'
     // 创建一个类数组对象
-    const arrayLike = {
-      0: 'name',
-      1: 'age',
-      2: 'sex',
-      length: 3
-    }
+   const arrayLike = {
+     length: 3,
+     0: 'name',
+     1: 'age',
+     2: 'sex'
+   }
+   arrayLike[arrayLike.length] = 'height'
+   arrayLike.length++
+
     // 真数组
     const array = ['name', 'age', 'sex']
 
@@ -51,10 +57,10 @@
 
     // 遍历
     for(var i = 0, len = array.length; i < len; i++) {
-      // ……
+      array[i]
     }
     for(var i = 0, len = arrayLike.length; i < len; i++) {
-        // ……
+      array[i]
     }
 
     /* 区别于数组 */
@@ -78,6 +84,14 @@
     Array.from(arrayLike); // ["name", "age", "sex"]
     // 4. apply
     Array.prototype.concat.apply([], arrayLike) // ["name", "age", "sex"]
+
+
+    function fn2(a) {
+      console.log(arguments.length, fn2.length)
+      a = 3
+      console.log(arguments[0])
+    }
+    fn2(1, 2)
   </script>
 </body>
 </html>
