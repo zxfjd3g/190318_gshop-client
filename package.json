@@ -15,7 +15,8 @@
     "vuex": "3.1.1",
     "swiper": "4.5.0",
     "mint-ui": "2.2.13",
-    "mockjs": "1.0.1-beta3"
+    "mockjs": "1.0.1-beta3",
+    "better-scroll": "1.15.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.10.0",
