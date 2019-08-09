@@ -141,3 +141,25 @@
             2). 如果error中有response, 取出response中的status
                 status为: 401: token过期了, 退出登陆(清除local中的token和state中user与token), 并跳转到登陆页面
                 status为: 404: 提示访问的资源不存在
+
+
+# day04
+
+## json
+    1. json的整体结构
+        json对象: {}
+        json数组: []
+    2. 内部结构
+        {key1: value1, key2: value2}
+        [value1, value2]
+        key: 字符串, 必须用双引号包起来
+        value: string/number/boolean/{}/[]
+    3. json与js的关系
+        json本身是一种特定格式的js字符串
+        json对象与js对象可以相互转换
+        json数组与js数组可以相互转换
+    4. 设计json数据
+    5. mock的json数据与真实接口数据的关系
+        结构: 类型和名称
+        值(数据)
+        结构要一样, 而值可以不一样
