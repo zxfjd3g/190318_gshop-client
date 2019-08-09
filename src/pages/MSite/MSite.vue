@@ -75,7 +75,11 @@
     },
 
     computed: {
-      ...mapState(['address', 'categorys']),
+      // ...mapState(['address', 'categorys']),
+      ...mapState({
+        address: state => state.msite.address, // 函数的返回值用为属性值
+        categorys: state => state.msite.categorys,
+      }),
 
       /* 
       分类的二维数组

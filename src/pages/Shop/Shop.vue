@@ -21,6 +21,13 @@
 <script type="text/ecmascript-6">
   import ShopHeader from 'components/ShopHeader/ShopHeader.vue'
   export default {
+
+    mounted () {
+      this.$store.dispatch('getInfo')
+      this.$store.dispatch('getGoods')
+      this.$store.dispatch('getRatings')
+    },
+
     components: {
       ShopHeader
     }
