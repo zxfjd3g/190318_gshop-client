@@ -145,21 +145,101 @@
 
 # day04
 
-## json
-    1. json的整体结构
-        json对象: {}
-        json数组: []
-    2. 内部结构
-        {key1: value1, key2: value2}
-        [value1, value2]
-        key: 字符串, 必须用双引号包起来
-        value: string/number/boolean/{}/[]
-    3. json与js的关系
-        json本身是一种特定格式的js字符串
-        json对象与js对象可以相互转换
-        json数组与js数组可以相互转换
-    4. 设计json数据
-    5. mock的json数据与真实接口数据的关系
-        结构: 类型和名称
-        值(数据)
-        结构要一样, 而值可以不一样
+## 1. json的理解和设计
+    0. json是什么?
+        具有特定结构的字符串
+    1. 整体结构
+        1). json对象: {key1: value1, key2: value2}  与js对象可以相互转换
+        2). json数组: [value1, value2]    与js数组可以相互转换
+    2. json的组成
+        1). 结构: 数据类型和标识名称  不显示到界面上
+        2). 数据/值: 其它, 显示到界面
+    3. key是什么?  
+        字符串(必须用双向包起来)
+    4. value是什么?
+        string/number/boolean/{}/[]
+    5. 设计
+        {}与[]的选择
+    6. mock数据与真实数据
+        结构要一样, 值可以不一样
+
+## 2. mockjs的理解和使用
+    mockjs是什么: 用来提供mock数据接口的js库
+    mockjs作用: 拦截ajax请求, 返回根据指定结构生成的随机数据
+    mockjs使用: Mock.mock(url, template)
+
+## 3. 使用vuex管理商家相关的数据
+    goods
+    ratings
+    info
+
+## 4. vuex的多模块编码
+    1). 为什么vuex要有多模块
+        对中大型项目来说, 需要管理的状态数据较多, 不进行多模块方式拆分, mutations/actions模块会比较臃肿
+        而一旦将不同模块的数据分别拆分并管理, 再多的状态也不会有此问题
+    2). 设计多个模块
+        msite
+        user
+        shop
+    3). 每个模块的结构
+        export default {
+            state,
+            mutations,
+            actions,
+            getters
+        }
+    4). 将state, mutations, actions, getters拆分到各个模块中
+        每个模块中的mutations/actions/getters只能操作当前模块的state数据
+        不同模块的mutation可以相同, 但actions和getters不要相同
+    5). vuex管理的state结构
+        {
+          mudule1: {},
+          mudule2: {},
+          mudule3: {},
+        }
+    6). 配置:
+        new Vuex.Store({
+            mutations, // 能看到总状态数据, 能更新任意模块状态数据
+            actions, // 能看到总状态数据, 能触发任意mutation调用
+            getters, // 基于任意模块状态数据的计算属性
+            modules: {
+              module1,
+              module2
+            }
+        })
+    7). 在组件中与vuex通信
+        读取state数据: ...mapState({user: state => state.user.user})
+        读取getter数据: ...mapGetters(['totalShopCount'])
+        更新状态数据: this.$store.dispatch('actionName')   this.$store.commit('mutationName')    
+    
+    8). 多个action或mutation同名的问题
+        组件中:
+            store.dispatch(): 所有匹配的action调用
+            store.commit(): 所有匹配的mutation调用
+        action(全局/局部)中
+            commit(): 所有匹配的mutation调用
+        调用顺序
+            先全局, 再局部
+            多个局部根据配置的先后
+
+## 5. ShopHeader组件
+    1). 异步显示数据效果的编码流程
+        ajax
+          ajax请求函数
+          接口请求函数
+        vuex
+          modules/shop.js
+        组件
+          dispatch(): 异步获取后台数据到vuex的state
+          mapState(): 从vuex的state中读取对应的数据
+          模板中显示
+    2). 初始显示异常
+        情况: Cannot read property 'xxx' of undefined"
+        原因: 初始值是空对象, 内部没有数据, 而模板中直接显示3层表达式
+        解决: 使用v-if指令
+    3). vue transition动画
+        <transition name="xxx">
+        xxx-enter-active / xxx-leave-active
+          transition
+        xxx-enter / xxx-leave-to
+          隐藏时的样式
