@@ -109,7 +109,7 @@
 
     methods: {
       logout () {
-        MessageBox.confirm('确定退出吗?').then(action => {
+        MessageBox.confirm('确定退出吗?').then(() => {
           this.$store.dispatch('logout')
         }, () => {})
       }

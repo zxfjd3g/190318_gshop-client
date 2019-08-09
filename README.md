@@ -111,13 +111,13 @@
         请求发送验证码短信
         使用mint-ui实现对不同结果的不同提示效果
             按需引入打包
-            使用Toast/MessageBox/button
+            使用Toast/MessageBox/Button
     3). 手机号/验证码登陆
     4). 用户名/密码/验证码登陆
         发送ajax请求, 得到返回的结果
         根据结果的标识(code)来判断登陆请求是否成功
             1: 不成功, 显示提示
-            0: 成功, 保存user到state, 保存token到storage, 返回到个人中心
+            0: 成功, 保存user/token到state, 保存token到local, 返回到个人中心
     5). 自动登陆
         在初始时, 如果有token, 但没有user信息, 就发请求获取user实现自动登陆
     6). 退出登陆
