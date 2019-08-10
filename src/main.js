@@ -22,14 +22,6 @@ Vue.component('CartControl', CartControl)
 Vue.component('Split', Split)
 Vue.component(Button.name, Button)  // mt-button
 
-/* new Vue({
-  el: '#app',
-  components: {
-    App
-  },
-  template: '<App/>',
-  router, // 配置路由器
-}) */
 new Vue({
   // el: '#app',
   render: h => h(App),  // 函数返回组件标签<App/>

@@ -9,6 +9,8 @@
     <p>b==={{b}}</p>
     <p>c.d==={{c.d}}</p>
     <p>c.e==={{c.e}}</p>
+    <hr>
+    <Reactive1 :a="a"></Reactive1>
   </div>
 </template>
 
