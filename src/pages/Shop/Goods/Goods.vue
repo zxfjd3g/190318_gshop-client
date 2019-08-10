@@ -2,7 +2,7 @@
   <div>
     <div class="goods">
       <div class="menu-wrapper" ref="left">
-        <ul>
+        <ul ref="leftUl">
           <!-- current  currentIndex-->
           <li class="menu-item" :class="{current: currentIndex===index}" 
             v-for="(good, index) in goods" :key="good.name" @click="selectItem(index)">
@@ -34,7 +34,7 @@
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    CartControl组件
+                    <CartControl :food="food"/>
                   </div>
                 </div>
               </li>
@@ -75,7 +75,18 @@
       */
       currentIndex () {
         const {scrollY, tops} = this
-        return tops.findIndex((top, index) => scrollY>=top && scrollY<tops[index + 1])
+        // 计算得到新的下标
+        const index = tops.findIndex((top, index) => scrollY>=top && scrollY<tops[index + 1])
+        // 先比较发现不相同才保存
+        if (index != this.index && this.leftScroll) {
+          this.index = index
+          // 让左侧列表滑动到index对应的li
+          const li = this.$refs.leftUl.children[index]
+          this.leftScroll.scrollToElement(li, 500)
+        }
+        
+
+        return index
       }
     },
 
@@ -90,7 +101,7 @@
 
     methods: {
       _initScroll () {
-        const leftScroll = new BScroll(this.$refs.left, {
+        this.leftScroll = new BScroll(this.$refs.left, {
           click: true, // 分发自定义点击事件
         })
         this.rightScroll = new BScroll(this.$refs.right, {

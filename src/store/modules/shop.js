@@ -1,10 +1,13 @@
 /* 
 管理shop功能模块相关状态数据的vuex模块
 */
+import Vue from 'vue'
 import {
   RECEIVE_GOODS,
   RECEIVE_RATINGS,
-  RECEIVE_INFO
+  RECEIVE_INFO,
+  ADD_FOOD_COUNT,
+  REDUCE_FOOD_COUNT,
 } from '../mutation-types'
 
 import {
@@ -28,6 +31,26 @@ const mutations = {
   [RECEIVE_GOODS](state, {goods}) {
     state.goods = goods
   },
+
+  [ADD_FOOD_COUNT](state, {food}) {
+    // food.name = "xxxx"
+    if (food.count) {
+      food.count++
+    } else {
+      // 给food添加一个新的属性, 属性名是count, 值是1  ===> 没有数据绑定
+      // food.count = 1
+      // 为响应式对象添加一个属性，确保新属性也是响应式的，并且能够触发视图更新
+      Vue.set(food, 'count', 1)
+    }
+  },
+
+  [REDUCE_FOOD_COUNT](state, {food}) {
+    if (food.count>0) {
+      food.count--
+    }
+  },
+
+
 }
 const actions = {
   // 异步获取商家信息
@@ -62,6 +85,14 @@ const actions = {
       typeof cb === 'function' && cb()
     }
   },
+
+  updateFoodCount ({commit}, {isAdd, food}) {
+    if (isAdd) {
+      commit(ADD_FOOD_COUNT, {food})
+    } else {
+      commit(REDUCE_FOOD_COUNT, {food})
+    }
+  }
 }
 const getters = {}
 

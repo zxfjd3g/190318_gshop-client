@@ -7,6 +7,7 @@ import store from './store'
 import router from './router'
 import Header from 'components/Header/Header.vue'
 import Star from 'components/Star/Star.vue'
+import CartControl from 'components/CartControl/CartControl.vue'
 
 
 Vue.config.productionTip = false // 去掉提示输出
@@ -14,6 +15,7 @@ Vue.config.productionTip = false // 去掉提示输出
 // 注册全局组件
 Vue.component('Header', Header)
 Vue.component('Star', Star)
+Vue.component('CartControl', CartControl)
 Vue.component(Button.name, Button)  // mt-button
 
 /* new Vue({
