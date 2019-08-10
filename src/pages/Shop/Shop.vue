@@ -20,6 +20,7 @@
 
 <script type="text/ecmascript-6">
   import ShopHeader from 'components/ShopHeader/ShopHeader.vue'
+
   export default {
 
     mounted () {
@@ -29,7 +30,7 @@
     },
 
     components: {
-      ShopHeader
+      ShopHeader,
     }
   }
 </script>
