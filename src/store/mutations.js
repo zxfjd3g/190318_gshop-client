@@ -3,7 +3,7 @@
 */
 export default {
 
-  xxx (state) { // state是总状态
+  /* xxx (state) { // state是总状态
 
-  }
+  } */
 }

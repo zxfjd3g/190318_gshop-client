@@ -155,7 +155,7 @@
         1). 结构: 数据类型和标识名称  不显示到界面上
         2). 数据/值: 其它, 显示到界面
     3. key是什么?  
-        字符串(必须用双向包起来)
+        字符串(必须用双引号包起来)
     4. value是什么?
         string/number/boolean/{}/[]
     5. 设计
@@ -164,7 +164,7 @@
         结构要一样, 值可以不一样
 
 ## 2. mockjs的理解和使用
-    mockjs是什么: 用来提供mock数据接口的js库
+    mockjs是什么: 用来提供mock数据接口的js库/插件
     mockjs作用: 拦截ajax请求, 返回根据指定结构生成的随机数据
     mockjs使用: Mock.mock(url, template)
 
@@ -189,8 +189,9 @@
             getters
         }
     4). 将state, mutations, actions, getters拆分到各个模块中
-        每个模块中的mutations/actions/getters只能操作当前模块的state数据
-        不同模块的mutation可以相同, 但actions和getters不要相同
+        每个模块中的mutations/getters只能操作当前模块的state数据
+        不同模块的mutation可以同名, 但actions和getters不要相同
+        在任何action中commit()执行可以触发所有匹配的mutation
     5). vuex管理的state结构
         {
           mudule1: {},
@@ -204,7 +205,8 @@
             getters, // 基于任意模块状态数据的计算属性
             modules: {
               module1,
-              module2
+              module2,
+              mudule3
             }
         })
     7). 在组件中与vuex通信

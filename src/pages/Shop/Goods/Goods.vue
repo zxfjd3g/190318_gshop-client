@@ -3,8 +3,8 @@
     <div class="goods">
       <div class="menu-wrapper" ref="left">
         <ul>
-          <!-- current -->
-          <li class="menu-item" v-for="good in goods" :key="good.name">
+          <!-- current  currentIndex-->
+          <li class="menu-item" :class="{current: currentIndex===index}" v-for="(good, index) in goods" :key="good.name">
             <span class="text bottom-border-1px">
               <img class="icon" v-if="good.icon" :src="good.icon">
               {{good.name}}
@@ -49,10 +49,25 @@
   import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   export default {
+    data () {
+      return {
+        scrollY: 0, // 右侧列表滑动的y轴坐标, 初始为0, 在滑动过程实时改变
+        tops: [0, 5, 8, 12], // 右侧所有分类li的top组成的数组, 在列表显示之后统计一次即可
+      }
+    },
+
     computed: {
       ...mapState({
         goods: state => state.shop.goods
-      })
+      }),
+
+      /* 
+      当前分类的下标
+      */
+      currentIndex () {
+        const {scrollY, tops} = this
+        return tops.findIndex((top, index) => scrollY>=top && scrollY<tops[index + 1])
+      }
     },
 
     watch: {
