@@ -19,12 +19,12 @@
         </div>
       </div>
       <transition name="move">
-        <div class="shopcart-list" v-show="isShow">
+        <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-            <span class="empty">清空</span>
+            <span class="empty" @click="clearCart">清空</span>
           </div>
-          <div class="list-content">
+          <div class="list-content" ref="foods">
             <ul>
               <li class="food" v-for="food in cartFoods" :key="food.name">
                 <span class="name">{{food.name}}</span>
@@ -39,13 +39,17 @@
       </transition>
     </div>
     <transition name="fade">
-      <div class="list-mask" v-show="isShow" @click="toggleShow"></div>
+      <div class="list-mask" v-show="listShow" @click="toggleShow"></div>
     </transition>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll'
   import { mapState, mapGetters } from "vuex"
+  import { MessageBox } from 'mint-ui'
+  import { CLEAR_CART } from "../../store/mutation-types"
+
   export default {
 
     data () {
@@ -78,13 +82,49 @@
         } else {
           return '去结算'
         }
+      },
 
+      // 列表是否显示
+      listShow () {
+        console.log('listShow()')
+        if (this.totalCount===0) {
+          this.isShow = false
+          return false
+        }
+
+        // 如果列表显示了, 创建滚动对象
+        if (this.isShow) {
+          this.$nextTick(() => {
+            /*
+            单例对象: 单一的实例对象
+            1. 创建前: 判断对象不存在才去创建 
+            2. 创建后: 保存创建的对象
+            */
+            if (!this.scroll) { // 可能此时不需要形成滑动
+              this.scroll = new BScroll(this.$refs.foods, {
+                click: true
+              })
+            } else {
+              this.scroll.refresh() // 让滚动对象刷新: 重新计算来决定要不要形成滑动
+            }
+          })
+        }
+
+        return this.isShow
       }
     },
 
     methods: {
       toggleShow () {
-        this.isShow = !this.isShow
+        if (this.totalCount>0) {
+          this.isShow = !this.isShow
+        }
+      },
+
+      clearCart () {
+        MessageBox.confirm('确定清除吗').then(() => {
+          this.$store.commit(CLEAR_CART)
+        }, () => {})
       }
     }
   }
