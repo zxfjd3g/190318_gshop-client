@@ -11,6 +11,20 @@ import Goods from 'pages/Shop/Goods/Goods.vue'
 import Ratings from 'pages/Shop/Ratings/Ratings.vue'
 import Info from 'pages/Shop/Info/Info.vue'
 
+import Review from 'pages/Review/Review.vue'
+import SlotTest from 'pages/Review/SlotTest/SlotTest.vue'
+import MixinTest from 'pages/Review/MixinTest/MixinTest.vue'
+import ComponentTest from 'pages/Review/ComponentTest/ComponentTest.vue'
+import EventTest from 'pages/Review/EventTest/EventTest.vue'
+import ModelTest from 'pages/Review/ModelTest/ModelTest.vue'
+import ReactiveTest from 'pages/Review/ReactiveTest/ReactiveTest.vue'
+import LifeTest from 'pages/Review/LifeTest/LifeTest.vue'
+
+import A from '../pages/test/A.vue'
+import B from '../pages/test/B.vue'
+import B1 from '../pages/test/B1.vue'
+import B2 from '../pages/test/B2.vue'
+
 export default [{
     path: '/msite',
     component: Msite,
@@ -65,6 +79,60 @@ export default [{
       }
     ]
   },
+
+  {
+    path: '/review',
+    component: Review,
+    children: [
+      {
+        path: '/review/slot',
+        component: SlotTest
+      },
+      {
+        path: '/review/mixin',
+        component: MixinTest
+      },
+      {
+        path: '/review/component',
+        component: ComponentTest
+      },
+      {
+        path: '/review/event',
+        component: EventTest
+      },
+      {
+        path: '/review/model',
+        component: ModelTest
+      },
+      {
+        path: '/review/reactive',
+        component: ReactiveTest
+      },
+      {
+        path: '/review/life',
+        component: LifeTest
+      },
+    ]
+  },
+
+  {
+    path: '/a',
+    component: A
+  }, 
+  {
+    path: '/b',
+    component: B,
+    children: [{
+        path: '/b/b1',
+        component: B1
+      },
+      {
+        path: '/b/b2',
+        component: B2
+      },
+    ]
+  },
+
   {
     path: '/',
     redirect: '/msite'
