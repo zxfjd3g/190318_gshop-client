@@ -299,3 +299,20 @@
         c. 购物车列表不能滑动
         d. 购物车列表中点一次添加, 会增加多项
         e. 原本可以滑动的列表, 关闭再打开后不能再滑动了
+
+# day06
+### 1. Food组件
+    1). 父组件调用子组件的方法: this.$refs.child.method()
+
+### 2. ShopRatings组件和RatingsFilter组件
+    1). 使用计算属性对列表进行过滤显示
+    2). vue组件间通信
+        子向父: 函数props, vue自定义事件
+        任意组件间: 基于vue自定义事件的eventBus/pubsub
+    3). 自定义过滤器计算逻辑: 日期时间的格式化
+
+### 3. ShopInfo组件
+    1). 通过JS动态修改元素的样式宽度
+    2). 解决在当前路由路径上刷新的异常问题
+        在mounted()中, 判断只有当info中有数据才创建BScroll的实例
+        在info的watch中, 在$nextTick()回调中创建BScroll对象

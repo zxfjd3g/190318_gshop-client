@@ -122,7 +122,8 @@ export default [{
   {
     path: '/b',
     component: B,
-    children: [{
+    children: [
+      {
         path: '/b/b1',
         component: B1
       },
