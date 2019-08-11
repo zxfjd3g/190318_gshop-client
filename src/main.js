@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import {Button} from 'mint-ui'
+import VueLazyload from 'vue-lazyload'
 
+import loading from './common/images/loading.gif'
 import './filters'
 import './mock/mock-server'
 import App from './App.vue'
@@ -11,6 +13,10 @@ import Star from 'components/Star/Star.vue'
 import CartControl from 'components/CartControl/CartControl.vue'
 import Split from 'components/Split/Split.vue'
 
+// 声明使用vue插件 ==> 全局指令lazy
+Vue.use(VueLazyload, {
+  loading,
+})
 
 Vue.prototype.$eventBus = new Vue()
 Vue.config.productionTip = false // 去掉提示输出

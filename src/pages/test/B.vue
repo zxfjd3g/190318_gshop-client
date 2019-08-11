@@ -10,9 +10,9 @@
         <router-link to="/b/b2" replace>b222</router-link>
       </div>
     </div>
-
-    <router-view></router-view>
-    
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -22,7 +22,7 @@
     }
   }
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
   .tab
     height 40px

@@ -1,10 +1,23 @@
 /* 
 所有路由配置的数组
 */
+/* 
 import Msite from 'pages/MSite/MSite.vue'
 import Search from 'pages/Search/Search.vue'
 import Order from 'pages/Order/Order.vue'
 import Profile from 'pages/Profile/Profile.vue'
+ */
+
+ /* 
+ import(module): 被动态引入的模块就会被单独打包    webpack做的
+ 路由组件配置是一个函数: 返回包含路由组件的promise对象
+ */
+const Msite = () => import('pages/MSite/MSite.vue')
+const Search = () => import('pages/Search/Search.vue')
+const Order = () => import('pages/Order/Order.vue')
+const Profile = () => import('pages/Profile/Profile.vue')
+
+
 import Login from 'pages/Login/Login.vue'
 import Shop from 'pages/Shop/Shop.vue'
 import Goods from 'pages/Shop/Goods/Goods.vue'
