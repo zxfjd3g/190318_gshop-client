@@ -21,16 +21,19 @@
     <h1>3. 作用域插槽(scoped slots)</h1>
 
     <Slot3>
-      <!-- 接收子组件通过slot标签属性传递的数据 -->
+      <!-- slotProps是保存<slot>的所有属性 -->
       <template slot-scope="slotProps">
-        <span v-if="slotProps.todo.isComplete">{{slotProps.todo.text}} ✓</span>
+        <span v-if="slotProps.todo.isComplete">{{ slotProps.todo.text }}✓</span>
       </template>
     </Slot3>
+
     <Slot3>
+      <!-- slotProps是保存<slot>的所有属性 -->
       <template slot-scope="slotProps">
-        <span v-if="slotProps.todo.isComplete" style="color: red">{{slotProps.todo.text}}</span>
+        <span v-if="slotProps.todo.isComplete" style="color: red">{{ slotProps.todo.text }}</span>
       </template>
     </Slot3>
+
 
   </div>
 </template>

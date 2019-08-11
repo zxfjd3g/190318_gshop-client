@@ -5,12 +5,12 @@
 
     <component :is="curentComp"/>
 
-    <h2>缓存组件</h2>
+   <h2>缓存组件</h2>
     <keep-alive>
       <component :is="curentComp"/>
     </keep-alive>
     
-
+ 
     <h2>异步组件</h2>
     <async-component></async-component>
     <async-component2/>
