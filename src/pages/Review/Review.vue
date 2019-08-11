@@ -8,7 +8,9 @@
     <router-link to="/review/reactive">reactive</router-link>&nbsp;&nbsp;
     <router-link to="/review/life">life</router-link>&nbsp;&nbsp;
     <hr>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

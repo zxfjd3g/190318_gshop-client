@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app2">
     <router-view></router-view>
     <FooterGuide v-show="$route.meta.showFooter"/>
   </div>
@@ -8,7 +8,6 @@
 <script type="text/ecmascript-6">
   import FooterGuide from 'components/FooterGuide/FooterGuide.vue'
   export default {
-
     mounted() {
       this.$store.dispatch('getAddress')
       this.$store.dispatch('autoLogin')

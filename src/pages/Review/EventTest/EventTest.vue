@@ -22,7 +22,7 @@
       test1 () {
         alert('test1()')
       },
-      test2 () {
+      test2 (event) {
         alert('test2()')
       },
      

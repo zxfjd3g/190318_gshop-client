@@ -49,7 +49,7 @@ import { watch } from 'fs';
     },
 
     updated () {
-      console.log('beforeUpdate()', this.title, this.$refs.title.textContent)
+      console.log('updated()', this.title, this.$refs.title.textContent)
     },
 
     beforeDestroy () {
